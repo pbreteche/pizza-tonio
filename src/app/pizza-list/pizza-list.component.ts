@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Pizza} from '../model/pizza';
 import {pizze} from '../data/pizza-data';
 
@@ -10,6 +10,8 @@ import {pizze} from '../data/pizza-data';
 export class PizzaListComponent implements OnInit {
 
   pizze: Pizza[] = [];
+  @Output()
+  pizzaSelected = new EventEmitter<Pizza>();
 
   constructor() { }
 
@@ -17,4 +19,7 @@ export class PizzaListComponent implements OnInit {
     this.pizze = pizze;
   }
 
+  select(pizza: Pizza) {
+    this.pizzaSelected.emit(pizza);
+  }
 }

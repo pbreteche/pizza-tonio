@@ -1,5 +1,5 @@
 <h1>{{ title }}</h1>
 <div class="main">
-  <app-pizza-list></app-pizza-list>
+  <app-pizza-list (pizzaSelected)="setCurrent($event)"></app-pizza-list>
   <app-pizza-detail></app-pizza-detail>
 </div>

@@ -1,6 +1,8 @@
 <nav>
   <h1>Le nostre pizze</h1>
   <ul>
-    <li *ngFor="let pizza of pizze"><a>{{ pizza.name}}</a></li>
+    <li *ngFor="let pizza of pizze">
+      <a (click)="select(pizza)">{{ pizza.name}}</a>
+    </li>
   </ul>
 </nav>
