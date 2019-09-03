@@ -4,3 +4,12 @@ h1 {
   text-align: center;
   padding: .5em;
 }
+
+.main {
+  @media screen and (min-width: 720px) {
+    display: flex;
+    * {
+      flex: 1 0 auto;
+    }
+  }
+}
