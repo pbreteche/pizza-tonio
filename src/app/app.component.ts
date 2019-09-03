@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Pizza} from './model/pizza';
+import {pizze} from './data/pizza-data';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import {Pizza} from './model/pizza';
 })
 export class AppComponent {
   title = 'Pizza Tonio!';
-  currentPizza: Pizza;
+  currentPizza = pizze[0];
 
   setCurrent(pizza: Pizza) {
     this.currentPizza = pizza;

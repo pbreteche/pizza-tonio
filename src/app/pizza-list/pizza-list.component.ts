@@ -12,14 +12,17 @@ export class PizzaListComponent implements OnInit {
   pizze: Pizza[] = [];
   @Output()
   pizzaSelected = new EventEmitter<Pizza>();
+  currentPizza: Pizza;
 
   constructor() { }
 
   ngOnInit() {
     this.pizze = pizze;
+    this.currentPizza = pizze[0];
   }
 
   select(pizza: Pizza) {
+    this.currentPizza = pizza;
     this.pizzaSelected.emit(pizza);
   }
 }

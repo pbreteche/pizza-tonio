@@ -2,8 +2,13 @@ ul {
   list-style-type: none;
   a {
     cursor: pointer;
+    display: block;
     &:hover {
-      text-decoration: underline;
+      background: #ee7755;
+    }
+    &.active {
+      background: #cc3300;
+      color: white;
     }
   }
 }

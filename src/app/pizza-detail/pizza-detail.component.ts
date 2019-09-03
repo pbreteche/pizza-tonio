@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Pizza} from '../model/pizza';
 
 @Component({
@@ -8,15 +8,12 @@ import {Pizza} from '../model/pizza';
 })
 export class PizzaDetailComponent implements OnInit {
 
-  pizza = new Pizza();
+  @Input()
+  pizza: Pizza;
 
   constructor() { }
 
   ngOnInit() {
-    this.pizza.name = 'Marinara';
-    this.pizza.ingredients = ['tomato', 'basil', 'garlic', 'oregano'];
-    this.pizza.price = 9;
-    this.pizza.veganFriendly = true;
   }
 
 }
