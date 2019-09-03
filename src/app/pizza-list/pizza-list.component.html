@@ -1,7 +1,15 @@
 <nav>
   <h1>Le nostre pizze</h1>
+  <label for="filter-pizza-by-vege" class="sr-only">Filter pizza by vege or not</label>
+  <select class="custom-select" id="filter-pizza-by-vege"
+    (change)="setVegeFilter($event.target.value)"
+  >
+    <option selected value="all">Tous</option>
+    <option value="vege">Végé</option>
+    <option value="no-vege">Non végé</option>
+  </select>
   <ul>
-    <li *ngFor="let pizza of pizze">
+    <li *ngFor="let pizza of filteredPizze">
       <a (click)="select(pizza)"
          [ngClass]="pizza === currentPizza?'active':''">{{ pizza.name}}</a>
     </li>
