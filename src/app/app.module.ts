@@ -5,6 +5,7 @@ import localeFr from '@angular/common/locales/fr';
 
 import { AppComponent } from './app.component';
 import { PizzaDetailComponent } from './pizza-detail/pizza-detail.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -14,7 +15,8 @@ registerLocaleData(localeFr, 'fr');
     PizzaDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

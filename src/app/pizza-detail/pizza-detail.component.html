@@ -3,7 +3,7 @@
     <img *ngIf="pizza.veganFriendly"  src="assets/Vegetarian-mark.svg" height="24"/>
   </h1>
   <p>Prix: {{ pizza.price | currency:'EUR':'symbol':'0.2-2':'fr' }}</p>
-  <ul>
-    <li *ngFor="let ingredient of pizza.ingredients">{{ ingredient }}</li>
+  <ul class="list-inline">
+    <li class="list-inline-item" *ngFor="let ingredient of pizza.ingredients">{{ ingredient }}</li>
   </ul>
 </article>
