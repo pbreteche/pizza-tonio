@@ -1,4 +1,5 @@
 <h1>{{ title }}</h1>
+<app-pizza-reactive-form (pizzaCreated)="add($event)"></app-pizza-reactive-form>
 <app-pizza-template-form (pizzaCreated)="add($event)"></app-pizza-template-form>
 <div class="main">
   <app-pizza-list (pizzaSelected)="setCurrent($event)"></app-pizza-list>
