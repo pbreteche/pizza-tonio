@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Pizza} from './model/pizza';
-import {pizze} from './data/pizza-data';
+import {PizzaListService} from './pizza-list.service';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +9,17 @@ import {pizze} from './data/pizza-data';
 })
 export class AppComponent {
   title = 'Pizza Tonio!';
-  currentPizza = pizze[0];
+  currentPizza: Pizza;
+
+  constructor(private pizzaList: PizzaListService) {
+    this.currentPizza = this.pizzaList.pizze[0];
+  }
 
   setCurrent(pizza: Pizza) {
     this.currentPizza = pizza;
   }
 
   add(pizza: Pizza) {
-    pizze.push(pizza);
+    this.pizzaList.pizze.push(pizza);
   }
 }

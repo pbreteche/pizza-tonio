@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Pizza} from '../model/pizza';
-import {pizze} from '../data/pizza-data';
+import {PizzaListService} from '../pizza-list.service';
 
 @Component({
   selector: 'app-pizza-list',
@@ -9,23 +9,21 @@ import {pizze} from '../data/pizza-data';
 })
 export class PizzaListComponent implements OnInit {
 
-  pizze: Pizza[] = [];
   filteredPizze: Pizza[] = [];
   @Output()
   pizzaSelected = new EventEmitter<Pizza>();
   currentPizza: Pizza;
   vegeFilter = 'all';
 
-  constructor() { }
+  constructor(private pizzaList: PizzaListService) { }
 
   ngOnInit() {
-    this.pizze = pizze;
-    this.filteredPizze = pizze;
-    this.currentPizza = pizze[0];
+    this.filteredPizze = this.pizzaList.pizze;
+    this.currentPizza = this.pizzaList.pizze[0];
   }
 
   private pizzeFilter() {
-    this.filteredPizze = this.pizze.filter(pizza => {
+    this.filteredPizze = this.pizzaList.pizze.filter(pizza => {
       return this.vegeFilter === 'all' ||
         (pizza.veganFriendly && this.vegeFilter === 'vege') ||
         (!pizza.veganFriendly && this.vegeFilter === 'no-vege');
