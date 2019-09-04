@@ -3,5 +3,5 @@
     <img *ngIf="pizza.veganFriendly"  src="assets/Vegetarian-mark.svg" height="24" alt="vegetarian mark"/>
   </h1>
   <p>Prix: {{ pizza.price | currency:'EUR':'symbol':'0.2-2':'fr' }}</p>
-  <p>{{ pizza.ingredients.join(', ')}}</p>
+  <p>{{ pizza.toppings.join(', ')}}</p>
 </article>

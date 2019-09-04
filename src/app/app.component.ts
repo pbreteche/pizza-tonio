@@ -14,4 +14,8 @@ export class AppComponent {
   setCurrent(pizza: Pizza) {
     this.currentPizza = pizza;
   }
+
+  add(pizza: Pizza) {
+    pizze.push(pizza);
+  }
 }

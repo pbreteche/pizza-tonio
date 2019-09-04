@@ -1,6 +1,6 @@
 export class Pizza {
   name: string;
-  ingredients: string[] = [];
+  toppings: string[] = [];
   price: number;
   veganFriendly: boolean;
 }
