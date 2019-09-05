@@ -22,7 +22,7 @@ export class PizzaTemplateFormComponent implements OnInit {
 
   add() {
     this.currentPizza.pizza = this.newPizza;
-    this.pizzaList.pizze.push(this.newPizza);
+    this.pizzaList.add(this.newPizza);
     this.newPizza = new Pizza();
   }
 

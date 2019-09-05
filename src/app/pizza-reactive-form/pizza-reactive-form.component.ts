@@ -37,7 +37,7 @@ export class PizzaReactiveFormComponent implements OnInit {
 
   add() {
     this.currentPizza.pizza = this.pizzaForm.value;
-    this.pizzaList.pizze.push(this.pizzaForm.value);
+    this.pizzaList.add(this.pizzaForm.value);
     this.pizzaForm.reset();
     (this.pizzaForm.get('toppings') as FormArray).clear();
   }

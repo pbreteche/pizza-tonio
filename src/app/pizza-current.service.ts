@@ -9,10 +9,6 @@ export class PizzaCurrentService {
   pizza: Pizza = new Pizza();
 
   constructor(pizzaList: PizzaListService) {
-    if (pizzaList.pizze.length) {
-      this.pizza = pizzaList.pizze[0];
-    } else {
-      pizzaList.pizzeObservable.subscribe(pizze => this.pizza = pizze[0]);
-    }
+    pizzaList.pizze.subscribe(pizze => this.pizza = pizze.length ? pizze[0] : new Pizza());
   }
 }
