@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Pizza} from '../model/pizza';
+import {PizzaCurrentService} from '../pizza-current.service';
+import {PizzaListService} from '../pizza-list.service';
 
 @Component({
   selector: 'app-pizza-reactive-form',
@@ -9,9 +11,6 @@ import {Pizza} from '../model/pizza';
 })
 export class PizzaReactiveFormComponent implements OnInit {
 
-  @Output()
-  pizzaCreated = new EventEmitter<Pizza>();
-
   pizzaForm = new FormGroup({
     name: new FormControl('', Validators.required),
     price: new FormControl(5, [Validators.min(5), Validators.required]),
@@ -19,7 +18,10 @@ export class PizzaReactiveFormComponent implements OnInit {
   });
   newTopping = new FormControl('');
 
-  constructor() { }
+  constructor(
+    private currentPizza: PizzaCurrentService,
+    private pizzaList: PizzaListService
+  ) { }
 
   ngOnInit() {
   }
@@ -34,7 +36,8 @@ export class PizzaReactiveFormComponent implements OnInit {
   }
 
   add() {
-    this.pizzaCreated.emit(this.pizzaForm.value);
+    this.currentPizza.pizza = this.pizzaForm.value;
+    this.pizzaList.pizze.push(this.pizzaForm.value);
     this.pizzaForm.reset();
     (this.pizzaForm.get('toppings') as FormArray).clear();
   }
