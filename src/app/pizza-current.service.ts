@@ -12,7 +12,7 @@ export class PizzaCurrentService {
     if (pizzaList.pizze.length) {
       this.pizza = pizzaList.pizze[0];
     } else {
-      pizzaList.pizzePromise.then(pizze => this.pizza = pizze[0]);
+      pizzaList.pizzeObservable.subscribe(pizze => this.pizza = pizze[0]);
     }
   }
 }
