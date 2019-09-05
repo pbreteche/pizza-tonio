@@ -6,9 +6,13 @@ import {PizzaListService} from './pizza-list.service';
   providedIn: 'root'
 })
 export class PizzaCurrentService {
-  pizza: Pizza;
+  pizza: Pizza = new Pizza();
 
   constructor(pizzaList: PizzaListService) {
-    this.pizza = pizzaList.pizze[0];
+    if (pizzaList.pizze.length) {
+      this.pizza = pizzaList.pizze[0];
+    } else {
+      pizzaList.pizzePromise.then(pizze => this.pizza = pizze[0]);
+    }
   }
 }

@@ -10,7 +10,6 @@ import { PizzaDetailComponent } from './pizza-detail/pizza-detail.component';
 import { PizzaListComponent } from './pizza-list/pizza-list.component';
 import { PizzaTemplateFormComponent } from './pizza-template-form/pizza-template-form.component';
 import { PizzaReactiveFormComponent } from './pizza-reactive-form/pizza-reactive-form.component';
-import {PizzaListService} from './pizza-list.service';
 import {HttpClientModule} from '@angular/common/http';
 
 registerLocaleData(localeFr, 'fr');
@@ -27,7 +26,8 @@ registerLocaleData(localeFr, 'fr');
     BrowserModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

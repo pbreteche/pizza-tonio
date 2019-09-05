@@ -1,4 +1,4 @@
-<article>
+<article *ngIf="pizza">
   <h1>{{ pizza.name | uppercase }}
     <img *ngIf="pizza.veganFriendly"  src="assets/Vegetarian-mark.svg" height="24" alt="vegetarian mark"/>
   </h1>
