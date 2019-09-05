@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Pizza} from '../model/pizza';
 import {PizzaListService} from '../pizza-list.service';
+import {PizzaCurrentService} from '../pizza-current.service';
 
 @Component({
   selector: 'app-pizza-list',
@@ -10,16 +11,15 @@ import {PizzaListService} from '../pizza-list.service';
 export class PizzaListComponent implements OnInit {
 
   filteredPizze: Pizza[] = [];
-  @Output()
-  pizzaSelected = new EventEmitter<Pizza>();
-  currentPizza: Pizza;
   vegeFilter = 'all';
 
-  constructor(private pizzaList: PizzaListService) { }
+  constructor(
+    private pizzaList: PizzaListService,
+    private currentPizza: PizzaCurrentService
+  ) { }
 
   ngOnInit() {
     this.filteredPizze = this.pizzaList.pizze;
-    this.currentPizza = this.pizzaList.pizze[0];
   }
 
   private pizzeFilter() {
@@ -29,14 +29,13 @@ export class PizzaListComponent implements OnInit {
         (!pizza.veganFriendly && this.vegeFilter === 'no-vege');
     });
 
-    if (this.filteredPizze.indexOf(this.currentPizza) === -1) {
+    if (this.filteredPizze.indexOf(this.currentPizza.pizza) === -1) {
       this.select(this.filteredPizze[0]);
     }
   }
 
   select(pizza: Pizza) {
-    this.currentPizza = pizza;
-    this.pizzaSelected.emit(pizza);
+    this.currentPizza.pizza = pizza;
   }
 
   setVegeFilter(value: string) {

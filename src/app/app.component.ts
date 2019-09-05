@@ -9,14 +9,8 @@ import {PizzaListService} from './pizza-list.service';
 })
 export class AppComponent {
   title = 'Pizza Tonio!';
-  currentPizza: Pizza;
 
   constructor(private pizzaList: PizzaListService) {
-    this.currentPizza = this.pizzaList.pizze[0];
-  }
-
-  setCurrent(pizza: Pizza) {
-    this.currentPizza = pizza;
   }
 
   add(pizza: Pizza) {
