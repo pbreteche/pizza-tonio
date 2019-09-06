@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PizzaCenterComponent } from './pizza-center.component';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('PizzaCenterComponent', () => {
   let component: PizzaCenterComponent;
@@ -8,6 +9,7 @@ describe('PizzaCenterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [ PizzaCenterComponent ]
     })
     .compileComponents();
