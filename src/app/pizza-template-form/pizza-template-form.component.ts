@@ -36,6 +36,8 @@ export class PizzaTemplateFormComponent implements OnInit {
   submit() {
     if (!this.editMode) {
       this.pizzaList.add(this.newPizza);
+      this.router.navigate(['pizza', this.newPizza.name.toLowerCase()]);
+      return;
     }
     this.router.navigate(['../..', this.newPizza.name.toLowerCase()], {relativeTo: this.route});
   }

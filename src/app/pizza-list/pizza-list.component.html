@@ -2,9 +2,9 @@
   <h1>Le nostre pizze</h1>
   <label for="filter-pizza-by-vege" class="sr-only">Filter pizza by vege or not</label>
   <select class="custom-select" id="filter-pizza-by-vege"
-    (change)="setVegeFilter($event.target.value)"
+    (change)="setVegeFilter($event.target.value)" [value]="filter.value"
   >
-    <option selected value="all">Tous</option>
+    <option value="all">Tous</option>
     <option value="vege">Végé</option>
     <option value="no-vege">Non végé</option>
   </select>

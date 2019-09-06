@@ -19,6 +19,11 @@ registerLocaleData(localeFr, 'fr');
 const appRoutes: Routes = [
   { path: 'pizze', component: PizzaListComponent},
   {
+    path: 'pizze/create',
+    component: PizzaTemplateFormComponent,
+    data: { editMode: false }
+  },
+  {
     path: 'pizza/:name',
     component: PizzaCenterComponent,
     children: [
