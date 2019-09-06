@@ -2,6 +2,7 @@
   <h1>{{ pizza.name | uppercase }}
     <img *ngIf="pizza.veganFriendly"  src="assets/Vegetarian-mark.svg" height="24" alt="vegetarian mark"/>
   </h1>
+  <button (click)="edit()">🖖</button>
   <p>Prix: {{ pizza.price | currency:'EUR':'symbol':'0.2-2':'fr' }}</p>
-  <p>{{ pizza.toppings.join(', ')}}</p>
+  <p>{{ toppings.join(', ')}}</p>
 </article>

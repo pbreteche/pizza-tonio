@@ -1,31 +1,31 @@
 [
   {
     "name": "Marinara",
-    "toppings": ["tomato", "basil", "garlic", "oregano"],
+    "toppings": [{ "name": "tomato" },{ "name": "basil" },{ "name": "garlic" },{ "name": "oregano" }],
     "price": 9,
     "veganFriendly": true
   },
   {
     "name": "Napolitana",
-    "toppings": ["tomato", "mozzarella", "anchovies", "oregano"],
+    "toppings": [{ "name": "tomato" },{ "name": "mozzarella" },{ "name": "anchovies" },{ "name": "oregano" }],
     "price": 11,
     "veganFriendly": false
   },
   {
     "name": "Margherita",
-    "toppings": ["tomato", "mozzarella", "basil"],
+    "toppings": [{ "name": "tomato" },{ "name": "mozzarella" },{ "name": "basil" }],
     "price": 9,
     "veganFriendly": false
   },
   {
     "name": "Regina",
-    "toppings": ["tomato", "mozzarella", "prosciutto", "mushroom"],
+    "toppings": [{ "name": "tomato" },{ "name": "mozzarella" },{ "name": "prosciutto" },{ "name": "mushroom" }],
     "price": 9,
     "veganFriendly": false
   },
   {
     "name": "Antonia",
-    "toppings": ["cherry tomato", "mozzarella", "olive", "mushroom", "rocket"],
+    "toppings": [{ "name": "cherry tomato" },{ "name": "mozzarella" },{ "name": "olive" },{ "name": "mushroom" },{ "name": "rocket" }],
     "price": 9,
     "veganFriendly": true
   }

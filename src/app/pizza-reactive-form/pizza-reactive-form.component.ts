@@ -1,6 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Pizza} from '../model/pizza';
 import {PizzaCurrentService} from '../pizza-current.service';
 import {PizzaListService} from '../pizza-list.service';
 

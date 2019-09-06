@@ -1,7 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Pizza} from '../model/pizza';
+import {Pizza, Topping} from '../model/pizza';
 import {PizzaCurrentService} from '../pizza-current.service';
 import {PizzaListService} from '../pizza-list.service';
+import {PizzaEditedService} from '../pizza-edited.service';
+import {Form, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-pizza-template-form',
@@ -11,23 +13,33 @@ import {PizzaListService} from '../pizza-list.service';
 export class PizzaTemplateFormComponent implements OnInit {
 
   newPizza = new Pizza();
-  newTopping = '';
+  editMode = false;
+  newTopping = new Topping();
   constructor(
     private currentPizza: PizzaCurrentService,
-    private pizzaList: PizzaListService
-  ) { }
+    private pizzaList: PizzaListService,
+    private pizzaEdited: PizzaEditedService
+  ) {
+    this.pizzaEdited.pizza.subscribe(pizza => {
+      this.newPizza = pizza;
+      this.editMode = true;
+    });
+  }
 
   ngOnInit() {
   }
 
   add() {
-    this.currentPizza.pizza = this.newPizza;
-    this.pizzaList.add(this.newPizza);
+    if (!this.editMode) {
+      this.currentPizza.pizza = this.newPizza;
+      this.pizzaList.add(this.newPizza);
+    }
+    this.editMode = false;
     this.newPizza = new Pizza();
   }
 
   addTopping() {
     this.newPizza.toppings.push(this.newTopping);
-    this.newTopping = '';
+    this.newTopping = new Topping();
   }
 }

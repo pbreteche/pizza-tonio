@@ -45,6 +45,7 @@ export class PizzaListService {
     this.pizzeBuffer.push(newPizza);
     this.pizzeSubject.next(this.pizzeBuffer);
     // envoi de la nouvelle pizza au serveur
+    /*
     this.http.post('/assets/pizza.json', newPizza).subscribe(
       value => null, err => {
         console.log('cannot upload pizza', newPizza);
@@ -54,5 +55,6 @@ export class PizzaListService {
         this.pizzeSubject.next(this.pizzeBuffer);
       }
     );
+    */
   }
 }
