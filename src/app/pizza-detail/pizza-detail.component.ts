@@ -1,21 +1,31 @@
-import {Component} from '@angular/core';
-import {PizzaCurrentService} from '../pizza-current.service';
+import {Component, OnInit} from '@angular/core';
 import {PizzaEditedService} from '../pizza-edited.service';
+import {Pizza} from '../model/pizza';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {PizzaListService} from '../pizza-list.service';
+import {switchMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-pizza-detail',
   templateUrl: './pizza-detail.component.html',
   styleUrls: ['./pizza-detail.component.scss']
 })
-export class PizzaDetailComponent {
+export class PizzaDetailComponent implements OnInit {
+  private pizza: Pizza;
 
   constructor(
-    private pizzaCurrent: PizzaCurrentService,
-    private pizzaEdited: PizzaEditedService
+    private pizzaEdited: PizzaEditedService,
+    private route: ActivatedRoute,
+    private pizzaList: PizzaListService
   ) { }
 
-  get pizza() {
-    return this.pizzaCurrent.pizza;
+  ngOnInit(): void {
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.pizzaList.findByName(params.get('name'))
+      )
+    ).subscribe((pizza: Pizza) => this.pizza = pizza);
   }
 
   get toppings() {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Pizza} from './model/pizza';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +56,12 @@ export class PizzaListService {
       }
     );
     */
+  }
+
+  findByName(name: string): Observable<Pizza> {
+    console.log(name);
+    return this.pizze.pipe(
+      map(pizze => pizze.find(elt => elt.name.toLowerCase() === name))
+    );
   }
 }

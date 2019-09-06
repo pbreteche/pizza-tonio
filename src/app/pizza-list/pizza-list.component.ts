@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Pizza} from '../model/pizza';
 import {PizzaListService} from '../pizza-list.service';
-import {PizzaCurrentService} from '../pizza-current.service';
 
 @Component({
   selector: 'app-pizza-list',
@@ -14,7 +13,6 @@ export class PizzaListComponent implements OnInit {
 
   constructor(
     private pizzaList: PizzaListService,
-    private currentPizza: PizzaCurrentService
   ) { }
 
   ngOnInit() {
@@ -22,15 +20,11 @@ export class PizzaListComponent implements OnInit {
   }
 
   select(pizza: Pizza) {
-    this.currentPizza.pizza = pizza;
   }
 
   setVegeFilter(filter: string) {
     this.pizzaList.getFilteredPizze(filter).subscribe(pizze => {
       this.filteredPizze = pizze;
-      if (this.filteredPizze.indexOf(this.currentPizza.pizza) === -1) {
-        this.currentPizza.pizza = this.filteredPizze[0];
-      }
     });
   }
 }

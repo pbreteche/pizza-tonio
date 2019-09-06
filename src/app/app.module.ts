@@ -11,8 +11,30 @@ import { PizzaListComponent } from './pizza-list/pizza-list.component';
 import { PizzaTemplateFormComponent } from './pizza-template-form/pizza-template-form.component';
 import { PizzaReactiveFormComponent } from './pizza-reactive-form/pizza-reactive-form.component';
 import {HttpClientModule} from '@angular/common/http';
+import {RouterModule, Routes} from '@angular/router';
+import { PizzaCenterComponent } from './pizza-center/pizza-center.component';
 
 registerLocaleData(localeFr, 'fr');
+
+const appRoutes: Routes = [
+  { path: 'pizze', component: PizzaListComponent},
+  {
+    path: 'pizza/:name',
+    component: PizzaCenterComponent,
+    children: [
+      {
+        path: '',
+        component: PizzaDetailComponent
+      },
+      {
+        path: 'edit',
+        component: PizzaTemplateFormComponent,
+        data: { editMode: true}
+      }
+    ]
+  },
+  { path: '', redirectTo: 'pizze', pathMatch: 'full'}
+];
 
 @NgModule({
   declarations: [
@@ -20,14 +42,16 @@ registerLocaleData(localeFr, 'fr');
     PizzaDetailComponent,
     PizzaListComponent,
     PizzaTemplateFormComponent,
-    PizzaReactiveFormComponent
+    PizzaReactiveFormComponent,
+    PizzaCenterComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes, {enableTracing: true})
   ],
   providers: [],
   bootstrap: [AppComponent]

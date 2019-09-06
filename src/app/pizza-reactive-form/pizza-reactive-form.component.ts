@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {PizzaCurrentService} from '../pizza-current.service';
 import {PizzaListService} from '../pizza-list.service';
 
 @Component({
@@ -18,7 +17,6 @@ export class PizzaReactiveFormComponent implements OnInit {
   newTopping = new FormControl('');
 
   constructor(
-    private currentPizza: PizzaCurrentService,
     private pizzaList: PizzaListService
   ) { }
 
@@ -35,7 +33,6 @@ export class PizzaReactiveFormComponent implements OnInit {
   }
 
   add() {
-    this.currentPizza.pizza = this.pizzaForm.value;
     this.pizzaList.add(this.pizzaForm.value);
     this.pizzaForm.reset();
     (this.pizzaForm.get('toppings') as FormArray).clear();

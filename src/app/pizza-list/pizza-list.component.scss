@@ -1,19 +1,10 @@
-nav {
-
-}
-
 ul {
   list-style-type: none;
   padding: 0;
   a {
-    cursor: pointer;
     display: block;
     &:hover {
       background: #ee7755;
-    }
-    &.active {
-      background: #cc3300;
-      color: white;
     }
   }
 }

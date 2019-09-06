@@ -10,8 +10,7 @@
   </select>
   <ul>
     <li *ngFor="let pizza of filteredPizze">
-      <a (click)="select(pizza)"
-         [ngClass]="pizza === currentPizza.pizza?'active':''">{{ pizza.name}}</a>
+      <a [routerLink]="['/pizza', pizza.name | lowercase]" >{{ pizza.name}}</a>
     </li>
   </ul>
 </nav>

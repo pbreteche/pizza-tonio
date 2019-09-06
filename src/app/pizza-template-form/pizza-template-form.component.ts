@@ -1,9 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Pizza, Topping} from '../model/pizza';
-import {PizzaCurrentService} from '../pizza-current.service';
 import {PizzaListService} from '../pizza-list.service';
-import {PizzaEditedService} from '../pizza-edited.service';
-import {Form, FormGroup} from '@angular/forms';
+import {switchMap} from 'rxjs/operators';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
   selector: 'app-pizza-template-form',
@@ -13,29 +12,32 @@ import {Form, FormGroup} from '@angular/forms';
 export class PizzaTemplateFormComponent implements OnInit {
 
   newPizza = new Pizza();
-  editMode = false;
+  editMode: boolean;
   newTopping = new Topping();
   constructor(
-    private currentPizza: PizzaCurrentService,
-    private pizzaList: PizzaListService,
-    private pizzaEdited: PizzaEditedService
+    private route: ActivatedRoute,
+    private router: Router,
+    private pizzaList: PizzaListService
   ) {
-    this.pizzaEdited.pizza.subscribe(pizza => {
-      this.newPizza = pizza;
-      this.editMode = true;
+  }
+
+  ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      this.editMode = data.editMode;
+      if (!data.editMode) { return; }
+      this.route.parent.paramMap.pipe(
+        switchMap((params: ParamMap) =>
+          this.pizzaList.findByName(params.get('name'))
+        )
+      ).subscribe((pizza: Pizza) => this.newPizza = pizza);
     });
   }
 
-  ngOnInit() {
-  }
-
-  add() {
+  submit() {
     if (!this.editMode) {
-      this.currentPizza.pizza = this.newPizza;
       this.pizzaList.add(this.newPizza);
     }
-    this.editMode = false;
-    this.newPizza = new Pizza();
+    this.router.navigate(['../..', this.newPizza.name.toLowerCase()], {relativeTo: this.route});
   }
 
   addTopping() {
