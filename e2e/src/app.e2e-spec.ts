@@ -10,7 +10,15 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('pizza-tonio app is running!');
+    expect(page.getTitleText()).toEqual('Pizza Tonio!');
+  });
+
+  it('should navigate to pizza detail', () => {
+    page.navigateTo();
+    const navList = page.getNavList();
+    expect(navList.count()).toBeGreaterThanOrEqual(3);
+    navList.get(3).click();
+    expect(page.getPizzaTitle()).toEqual('MARGHERITA');
   });
 
   afterEach(async () => {

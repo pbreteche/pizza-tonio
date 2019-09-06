@@ -6,6 +6,14 @@ export class AppPage {
   }
 
   getTitleText() {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+    return element(by.css('app-root h1')).getText() as Promise<string>;
+  }
+
+  getNavList() {
+    return element.all(by.css('app-pizza-list nav a'));
+  }
+
+  getPizzaTitle() {
+    return element(by.css('app-pizza-detail h1')).getText() as Promise<string>;
   }
 }
